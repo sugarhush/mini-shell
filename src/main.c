@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 //Function Declarations
@@ -16,6 +17,15 @@ void repl() {
         char buf[BUFSIZ];
         fgets(buf, sizeof(buf), stdin);
         buf[strcspn(buf, "\n")]='\0';
-        printf("%s: command not found\n", buf);
+        //exit cmd
+        if (strcmp(buf, "exit")==0) {
+            exit(EXIT_SUCCESS);
+        }
+        else if(strncmp(buf, "echo",4)==0) {
+            printf("%s",buf+5);
+        }
+        else {
+            printf("%s: command not found\n", buf);
+        }
     }
 }
